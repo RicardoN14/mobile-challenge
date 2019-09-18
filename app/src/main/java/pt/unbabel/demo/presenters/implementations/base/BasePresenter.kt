@@ -10,7 +10,7 @@ import pt.unbabel.demo.presenters.listeners.base.IPresenterListener
 import javax.inject.Inject
 
 /**
- * Created by Ricardo Neves on 16/09/2019$.
+ * Created by Ricardo Neves on 16/09/2019.
  */
 
 abstract class BasePresenter<out PL : IPresenterListener, IL : IInteractorListener,

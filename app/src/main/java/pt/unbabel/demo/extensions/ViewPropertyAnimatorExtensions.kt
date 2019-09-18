@@ -4,7 +4,7 @@ import android.animation.Animator
 import android.view.ViewPropertyAnimator
 
 /**
- * Created by Ricardo Neves on 16/09/2019$.
+ * Created by Ricardo Neves on 16/09/2019.
  */
 
 fun ViewPropertyAnimator.setEndAnimation(endAnimationAction: (Animator?) -> Unit): ViewPropertyAnimator {

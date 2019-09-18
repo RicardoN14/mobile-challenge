@@ -6,7 +6,7 @@ import pt.unbabel.demo.interactors.interfaces.base.IBaseInteractor
 import pt.unbabel.demo.interactors.listeners.base.IInteractorListener
 
 /**
- * Created by Ricardo Neves on 16/09/2019$.
+ * Created by Ricardo Neves on 16/09/2019.
  */
 
 abstract class MockInteractor<IL : IInteractorListener> : IBaseInteractor<IL> {

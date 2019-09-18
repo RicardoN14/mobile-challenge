@@ -5,7 +5,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 /**
- * Created by Ricardo Neves on 16/09/2019$.
+ * Created by Ricardo Neves on 16/09/2019.
  */
 interface PostsService {
 

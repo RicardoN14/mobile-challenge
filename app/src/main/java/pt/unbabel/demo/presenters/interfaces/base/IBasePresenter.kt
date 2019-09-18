@@ -7,7 +7,7 @@ import pt.unbabel.demo.entities.requests.RequestConfig
 import pt.unbabel.demo.entities.requests.RequestError
 
 /**
- * Created by Ricardo Neves on 16/09/2019$.
+ * Created by Ricardo Neves on 16/09/2019.
  */
 
 interface IBasePresenter<out PL : IPresenterListener, IL : IInteractorListener,

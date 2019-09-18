@@ -7,7 +7,7 @@ import pt.unbabel.demo.interactors.mocks.posts.PostsMockInteractor
 import pt.unbabel.demo.interactors.server.posts.PostsServerInteractor
 
 /**
- * Created by Ricardo Neves on 16/09/2019$.
+ * Created by Ricardo Neves on 16/09/2019.
  */
 
 @Module

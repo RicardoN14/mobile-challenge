@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">UnbabelDemoProject</string>
+
+    <string name="error_state_retry_button">Retry</string>
+    <string name="error_dialog_ok">OK</string>
+    <string name="error_dialog_title">Error</string>
+    <string name="error_timeout_message">Timeout Error</string>
+    <string name="error_internet_connection_message">Internet Connection Not Found</string>
+    <string name="error_ssl_connection_message">Unable to establish secure connection to the server.</string>
+    <string name="error_parse_message">Error Getting Data From Server</string>
+    <string name="error_server_message">Server Error (%1$d)</string>
+
 </resources>

@@ -12,7 +12,7 @@ import pt.unbabel.demo.interfaces.IDialogListener
 import pt.unbabel.demo.ui.screens.Screen
 
 /**
- * Created by Ricardo Neves on 16/09/2019$.
+ * Created by Ricardo Neves on 16/09/2019.
  */
 class DialogManager(screen: Screen) : BaseManager<Screen>(screen) {
 

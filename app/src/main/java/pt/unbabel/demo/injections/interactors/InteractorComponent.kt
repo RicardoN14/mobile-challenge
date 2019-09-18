@@ -4,7 +4,7 @@ import dagger.Component
 import pt.unbabel.demo.presenters.implementations.posts.PostsPresenter
 
 /**
- * Created by Ricardo Neves on 16/09/2019$.
+ * Created by Ricardo Neves on 16/09/2019.
  */
 
 @Component(modules = [(InteractorModule::class)])

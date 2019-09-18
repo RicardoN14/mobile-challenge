@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 
 /**
- * Created by Ricardo Neves on 16/09/2019$.
+ * Created by Ricardo Neves on 16/09/2019.
  */
 interface IDialogListener {
 

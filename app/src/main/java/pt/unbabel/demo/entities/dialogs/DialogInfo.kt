@@ -5,7 +5,7 @@ import androidx.annotation.LayoutRes
 import kotlinx.android.parcel.Parcelize
 
 /**
- * Created by Ricardo Neves on 16/09/2019$.
+ * Created by Ricardo Neves on 16/09/2019.
  */
 
 @Parcelize
