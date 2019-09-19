@@ -9,11 +9,16 @@ import pt.unbabel.demo.entities.dialogs.DialogInfo
 import pt.unbabel.demo.interfaces.IDialogListener
 import pt.unbabel.demo.managers.DialogManager
 import pt.unbabel.demo.utils.DLog
+import pt.unbabel.demo.utils.InstanceStateProvider
 
 /**
  * Created by Ricardo Neves on 15/09/2019$.
  */
 abstract class Screen : AppCompatActivity(), IDialogListener {
+
+    companion object{
+        private const val SAVABLE_KEY = "SavableKey"
+    }
 
     protected val logTag: String = javaClass.simpleName
 
@@ -24,6 +29,8 @@ abstract class Screen : AppCompatActivity(), IDialogListener {
     private val dialogManager by lazy {
         DialogManager(this)
     }
+
+    private val savable = Bundle()
 
     var isInBackground = false
         private set
@@ -49,6 +56,11 @@ abstract class Screen : AppCompatActivity(), IDialogListener {
         setContentView(R.layout.screen_base)
 
         inflateLayout()
+
+        savedInstanceState?.let {
+            savable.putAll(it.getBundle(SAVABLE_KEY))
+        }
+
         doInitializations(savedInstanceState)
     }
 
@@ -96,6 +108,14 @@ abstract class Screen : AppCompatActivity(), IDialogListener {
     fun hideCurrentDialog(){
         dialogManager.hideDialog(false)
     }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putBundle(SAVABLE_KEY, savable)
+        super.onSaveInstanceState(outState)
+    }
+
+    fun <T> instanceState() = InstanceStateProvider.Nullable<T>(savable)
+    fun <T> instanceState(defaultValue: T) = InstanceStateProvider.NotNull(savable, defaultValue)
 
     /**
      * This function must be override if implementations

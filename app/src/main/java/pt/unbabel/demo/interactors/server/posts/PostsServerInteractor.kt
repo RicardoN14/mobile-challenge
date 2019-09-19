@@ -11,6 +11,8 @@ import pt.unbabel.demo.interactors.server.base.ServerInteractor
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.concurrent.TimeoutException
+import javax.net.ssl.SSLException
 
 class PostsServerInteractor : ServerInteractor<IPostsInteractorListener>(), IPostsInteractor {
 
@@ -48,9 +50,16 @@ class PostsServerInteractor : ServerInteractor<IPostsInteractorListener>(), IPos
 
                 requestPostsRequestConfig = requestConfig
                 interactorListener.hideLoader()
+
+                val errorType = when (t) {
+                    is SSLException -> RequestErrorType.SSL_ERROR
+                    is TimeoutException -> RequestErrorType.TIMEOUT_ERROR
+                    else -> RequestErrorType.SERVER_ERROR
+                }
+
                 interactorListener.showError(
                     requestConfig ?: RequestConfig(),
-                    RequestError(RequestErrorType.INTERNET_CONNECTION_ERROR)
+                    RequestError(errorType)
                 )
             }
 

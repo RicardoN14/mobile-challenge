@@ -25,9 +25,8 @@
 
         </activity>
 
-        <activity
-            android:name=".ui.screens.PostsScreen"
-            android:screenOrientation="portrait" />
+        <activity android:name=".ui.screens.PostsScreen" />
+        <activity android:name=".ui.screens.PostDetailsScreen" />
 
     </application>
 </manifest>

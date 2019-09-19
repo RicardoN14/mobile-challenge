@@ -1,10 +1,14 @@
 package pt.unbabel.demo.ui.screens
 
 import android.os.Bundle
+import androidx.recyclerview.widget.DividerItemDecoration
+import kotlinx.android.synthetic.main.screen_posts.*
 import pt.unbabel.demo.R
+import pt.unbabel.demo.adapters.PostsAdapter
 import pt.unbabel.demo.alias.PresentersArrayList
 import pt.unbabel.demo.entities.requests.RequestConfig
 import pt.unbabel.demo.entities.requests.RequestError
+import pt.unbabel.demo.extensions.setLinearAdapter
 import pt.unbabel.demo.http.entities.PostResponseData
 import pt.unbabel.demo.presenters.implementations.posts.PostsPresenter
 import pt.unbabel.demo.presenters.interfaces.posts.IPostsPresenter
@@ -17,6 +21,9 @@ class PostsScreen : ExecuteRequestScreen(), IPostsPresenterListener {
 
     private lateinit var postsPresenter: IPostsPresenter
 
+    private var postsResponseData: ArrayList<PostResponseData>? by instanceState()
+    private var postsAdapter: PostsAdapter? = null
+
     override fun initPresenters(presenters: PresentersArrayList, requestContextGroup: String) {
         postsPresenter = PostsPresenter(this, requestContextGroup)
         presenters += postsPresenter
@@ -25,10 +32,26 @@ class PostsScreen : ExecuteRequestScreen(), IPostsPresenterListener {
     override fun getExecuteRequestLayoutResourceId() = R.layout.screen_posts
 
     override fun doExecuteRequestInitializations(savedInstanceState: Bundle?) {
-        postsPresenter.requestPosts(RequestConfig(showErrorStateView = true))
+        postsResponseData?.let {
+            onRequestPostsSuccess(it)
+        } ?: postsPresenter.requestPosts(RequestConfig(showErrorStateView = true))
     }
 
     override fun onRequestPostsSuccess(postsResponseData: ArrayList<PostResponseData>) {
-        // TODO
+        this.postsResponseData = postsResponseData
+        initPostAdapter(postsResponseData)
+    }
+
+    private fun initPostAdapter(postsResponseData: java.util.ArrayList<PostResponseData>) {
+        postsAdapter = PostsAdapter(this, postsResponseData).apply {
+            postsRecyclerView.setLinearAdapter(
+                this,
+                itemDecoration = DividerItemDecoration(
+                    this@PostsScreen,
+                    DividerItemDecoration.VERTICAL
+                )
+            )
+        }
+
     }
 }
