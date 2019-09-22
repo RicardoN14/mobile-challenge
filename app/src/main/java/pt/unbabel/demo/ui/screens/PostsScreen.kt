@@ -7,7 +7,6 @@ import pt.unbabel.demo.R
 import pt.unbabel.demo.adapters.PostsAdapter
 import pt.unbabel.demo.alias.PresentersArrayList
 import pt.unbabel.demo.entities.requests.RequestConfig
-import pt.unbabel.demo.entities.requests.RequestError
 import pt.unbabel.demo.extensions.setLinearAdapter
 import pt.unbabel.demo.http.entities.PostResponseData
 import pt.unbabel.demo.presenters.implementations.posts.PostsPresenter
@@ -18,6 +17,10 @@ import pt.unbabel.demo.presenters.listeners.posts.IPostsPresenterListener
  * Created by Ricardo Neves on 17/09/2019.
  */
 class PostsScreen : ExecuteRequestScreen(), IPostsPresenterListener {
+
+    companion object {
+        private const val REQUEST_POSTS_ID = "PostsScreen::RequestPostsId"
+    }
 
     private lateinit var postsPresenter: IPostsPresenter
 
@@ -34,7 +37,12 @@ class PostsScreen : ExecuteRequestScreen(), IPostsPresenterListener {
     override fun doExecuteRequestInitializations(savedInstanceState: Bundle?) {
         postsResponseData?.let {
             onRequestPostsSuccess(it)
-        } ?: postsPresenter.requestPosts(RequestConfig(showErrorStateView = true))
+        } ?: postsPresenter.requestPosts(
+            RequestConfig(
+                requestId = REQUEST_POSTS_ID,
+                showErrorStateView = true
+            )
+        )
     }
 
     override fun onRequestPostsSuccess(postsResponseData: ArrayList<PostResponseData>) {
@@ -52,6 +60,6 @@ class PostsScreen : ExecuteRequestScreen(), IPostsPresenterListener {
                 )
             )
         }
-
     }
+
 }

@@ -23,7 +23,7 @@ class PostsPresenter(
 
     override fun getInteractorListener() = this
 
-    override fun requestPosts(requestConfig: RequestConfig?) {
+    override fun requestPosts(requestConfig: RequestConfig) {
         interactor.requestPosts(requestConfig)
     }
 

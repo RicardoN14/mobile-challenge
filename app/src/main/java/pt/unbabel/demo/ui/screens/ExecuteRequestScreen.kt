@@ -54,11 +54,11 @@ abstract class ExecuteRequestScreen : Screen(), IPresenterListener {
 
     protected open fun getRequestContextGroup() = toString()
 
-    override fun showLoader() {
+    override fun showLoader(requestConfig: RequestConfig) {
         loader?.visibility = View.VISIBLE
     }
 
-    override fun hideLoader() {
+    override fun hideLoader(requestConfig: RequestConfig) {
         loader?.visibility = View.GONE
     }
 
@@ -80,12 +80,12 @@ abstract class ExecuteRequestScreen : Screen(), IPresenterListener {
         handleError(this, requestConfig, requestError, errorStateManager)
     }
 
-    override fun hideRootView() {
+    override fun hideRootView(requestConfig: RequestConfig) {
         implementationRootView.gone()
         screenExecuteRequestErrorStateView.gone()
     }
 
-    override fun showRootView() {
+    override fun showRootView(requestConfig: RequestConfig) {
         implementationRootView.visible()
         if (errorStateManager.isShowingError) {
             screenExecuteRequestErrorStateView.visible()

@@ -5,5 +5,5 @@ import pt.unbabel.demo.interactors.interfaces.base.IBaseInteractor
 import pt.unbabel.demo.interactors.listeners.posts.IPostsInteractorListener
 
 interface IPostsInteractor : IBaseInteractor<IPostsInteractorListener> {
-    fun requestPosts(requestConfig: RequestConfig? = null)
+    fun requestPosts(requestConfig: RequestConfig)
 }

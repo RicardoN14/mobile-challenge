@@ -9,6 +9,6 @@ import pt.unbabel.demo.presenters.listeners.posts.IPostsPresenterListener
 interface IPostsPresenter :
     IBasePresenter<IPostsPresenterListener, IPostsInteractorListener, IPostsInteractor> {
 
-    fun requestPosts(requestConfig: RequestConfig? = null)
+    fun requestPosts(requestConfig: RequestConfig)
 
 }

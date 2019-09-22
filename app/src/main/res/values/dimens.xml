@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="information_card_view_default_title_size">21sp</dimen>
+    <dimen name="default_small_space">8dp</dimen>
+    <dimen name="default_normal_space">16dp</dimen>
+    <dimen name="default_high_space">24dp</dimen>
+
+    <dimen name="information_view_default_label_size">13sp</dimen>
+    <dimen name="information_view_default_value_size">16sp</dimen>
+
+    <dimen name="rectangle_background_corner_radius">12dp</dimen>
+    <dimen name="raised_elevation">6dp</dimen>
+
+</resources>

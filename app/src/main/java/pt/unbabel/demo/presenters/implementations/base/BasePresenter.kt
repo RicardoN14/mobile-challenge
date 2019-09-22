@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 abstract class BasePresenter<out PL : IPresenterListener, IL : IInteractorListener,
         I : IBaseInteractor<IL>>(override val presenterListener: PL,
-                                 override val requestContextGroup: String)
+                                 override val requestContext: String)
     : IBasePresenter<PL, IL, I>, IInteractorListener {
 
     protected val logTag: String = javaClass.simpleName
@@ -32,7 +32,7 @@ abstract class BasePresenter<out PL : IPresenterListener, IL : IInteractorListen
     private fun init() {
         injectDependencies(DaggerInteractorComponent.create())
         interactor.interactorListener = getInteractorListener()
-        interactor.requestContextGroup = requestContextGroup
+        interactor.requestContext = requestContext
     }
 
 }

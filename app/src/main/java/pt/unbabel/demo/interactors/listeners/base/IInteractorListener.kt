@@ -8,9 +8,9 @@ import pt.unbabel.demo.entities.requests.RequestError
  */
 
 interface IInteractorListener{
-    fun showLoader()
-    fun hideLoader()
-    fun showRootView()
-    fun hideRootView()
+    fun showLoader(requestConfig: RequestConfig)
+    fun hideLoader(requestConfig: RequestConfig)
+    fun showRootView(requestConfig: RequestConfig)
+    fun hideRootView(requestConfig: RequestConfig)
     fun showError(requestConfig: RequestConfig, requestError: RequestError)
 }

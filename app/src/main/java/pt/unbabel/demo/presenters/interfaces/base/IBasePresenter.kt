@@ -14,27 +14,27 @@ interface IBasePresenter<out PL : IPresenterListener, IL : IInteractorListener,
         I : IBaseInteractor<IL>> : IInteractorListener {
 
     val presenterListener: PL
-    val requestContextGroup: String
+    val requestContext: String
     var interactor: I
 
-    override fun showLoader() {
-        presenterListener.showLoader()
+    override fun showLoader(requestConfig: RequestConfig) {
+        presenterListener.showLoader(requestConfig)
     }
 
-    override fun hideLoader() {
-        presenterListener.hideLoader()
+    override fun hideLoader(requestConfig: RequestConfig) {
+        presenterListener.hideLoader(requestConfig)
     }
 
     override fun showError(requestConfig: RequestConfig, requestError: RequestError) {
         presenterListener.showError(requestConfig, requestError)
     }
 
-    override fun showRootView() {
-        presenterListener.showRootView()
+    override fun showRootView(requestConfig: RequestConfig) {
+        presenterListener.showRootView(requestConfig)
     }
 
-    override fun hideRootView() {
-        presenterListener.hideRootView()
+    override fun hideRootView(requestConfig: RequestConfig) {
+        presenterListener.hideRootView(requestConfig)
     }
 
     fun cancelAllRunningRequests() {

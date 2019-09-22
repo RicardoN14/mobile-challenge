@@ -5,4 +5,22 @@
         <attr name="ESV_message" format="reference" />
     </declare-styleable>
 
+    <declare-styleable name="InformationCardView">
+        <attr name="IFCV_icon" format="reference"/>
+        <attr name="IFCV_title" format="reference|string"/>
+        <attr name="IFCV_iconPadding" format="reference|dimension"/>
+        <attr name="IFCV_titleSize" format="reference|dimension"/>
+        <attr name="IFCV_titleColor" format="reference|color"/>
+    </declare-styleable>
+
+    <declare-styleable name="InformationView">
+        <attr name="IFV_label" format="reference|string"/>
+        <attr name="IFV_value" format="reference|string"/>
+        <attr name="IFV_labelSize" format="reference|dimension"/>
+        <attr name="IFV_valueSize" format="reference|dimension"/>
+        <attr name="IFV_labelColor" format="reference|color"/>
+        <attr name="IFV_valueColor" format="reference|color"/>
+        <attr name="IFV_ellipsizeLabel" format="boolean"/>
+    </declare-styleable>
+
 </resources>

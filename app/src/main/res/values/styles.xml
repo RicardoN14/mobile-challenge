@@ -46,4 +46,26 @@
         <item name="android:minWidth">0dp</item>
     </style>
 
+    <style name="RectangleWhiteStyle">
+        <item name="android:background">@drawable/shape_rectangle_white_with_rounded_corners</item>
+        <item name="android:elevation">@dimen/raised_elevation</item>
+    </style>
+
+    <style name="RectangleWhiteStyle.InformationCardViewStyle">
+        <item name="android:layout_margin">12dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingStart">@dimen/default_normal_space</item>
+        <item name="android:paddingEnd">@dimen/default_normal_space</item>
+        <item name="android:paddingTop">@dimen/default_normal_space</item>
+        <item name="android:paddingBottom">@dimen/default_high_space</item>
+        <item name="IFCV_iconPadding">16dp</item>
+    </style>
+
+    <style name="InformationViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">16dp</item>
+    </style>
+
 </resources>

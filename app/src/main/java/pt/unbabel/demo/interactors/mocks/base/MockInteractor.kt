@@ -11,33 +11,24 @@ import pt.unbabel.demo.interactors.listeners.base.IInteractorListener
 
 abstract class MockInteractor<IL : IInteractorListener> : IBaseInteractor<IL> {
 
-    override var requestContextGroup: String? = javaClass.toString()
+    override var requestContext = javaClass.toString()
     override lateinit var interactorListener: IL
 
-    protected fun executeWithDelay(runnable: () -> Unit, delay: Long = 500,
-                                   requestConfig: RequestConfig?) {
-        
-        val reqConfig = requestConfig ?: RequestConfig()
+    protected fun executeWithDelay(
+        runnable: () -> Unit, delay: Long = 500,
+        requestConfig: RequestConfig
+    ) {
 
-        if (reqConfig.showLoader) {
-            interactorListener.showLoader()
-        }
-
-        if (reqConfig.hideRootView) {
-            interactorListener.hideRootView()
+        if (requestConfig.showLoader) {
+            interactorListener.showLoader(requestConfig)
         }
 
         Handler().postDelayed({
             try {
 
-                if (reqConfig.showLoader) {
-                    interactorListener.hideLoader()
+                if (requestConfig.showLoader) {
+                    interactorListener.hideLoader(requestConfig)
                 }
-
-                if (reqConfig.hideRootView) {
-                    interactorListener.showRootView()
-                }
-
 
                 runnable()
             } catch (e: Exception) {
@@ -45,13 +36,13 @@ abstract class MockInteractor<IL : IInteractorListener> : IBaseInteractor<IL> {
             }
         }, delay)
     }
-	
-	override fun cancelAllRunningRequests() {
-        // TODO
+
+    override fun cancelAllRunningRequests() {
+        // empty for mocks implementation
     }
 
     override fun retryFailedRequests() {
-        // TODO
+        // empty for mocks implementation
     }
-	
+
 }

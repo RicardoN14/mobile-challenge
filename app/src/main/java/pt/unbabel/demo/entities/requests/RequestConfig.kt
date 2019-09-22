@@ -5,15 +5,15 @@ package pt.unbabel.demo.entities.requests
  */
 
 /**
+ * requestId: Id for the request - must be unique for each requestContext
  * showLoader: If true, the loader is visible when request is running
  * showError: If true, handle error is done. If false the error is never shown to the user.
  * showErrorStateView: If true the error (if showError = true) is shown in layout with retry button
  *     If false is shown in dialog
- * requestId: Id for the request if needed
- * hideRootView: If true hide the rootView when the request is running
+ * canRetry: If true the request can be repeated
  */
-class RequestConfig(var showLoader: Boolean = true,
+class RequestConfig(var requestId: String,
+                    var showLoader: Boolean = true,
                     var showError: Boolean = true,
                     var showErrorStateView: Boolean = false,
-                    var requestId: String? = null,
-                    var hideRootView: Boolean = false)
+                    var canRetry: Boolean = true)

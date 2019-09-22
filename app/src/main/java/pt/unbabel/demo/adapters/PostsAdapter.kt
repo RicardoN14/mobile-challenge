@@ -28,7 +28,7 @@ class PostsAdapter(screen: PostsScreen, items: ArrayList<PostResponseData>) :
         ) {
 
         override fun bind(item: PostResponseData, position: Int) {
-            postItemBody.text = item.body
+            postItemDescription.text = item.description
             postItemTitle.text = item.title
             postItem.setOnClickListener {
                 screen.startActivity<PostDetailsScreen>(
@@ -38,6 +38,5 @@ class PostsAdapter(screen: PostsScreen, items: ArrayList<PostResponseData>) :
         }
 
     }
-
 
 }

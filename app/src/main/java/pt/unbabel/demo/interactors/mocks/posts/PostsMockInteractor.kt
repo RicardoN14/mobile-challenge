@@ -8,7 +8,7 @@ import pt.unbabel.demo.interactors.mocks.base.MockInteractor
 
 class PostsMockInteractor : MockInteractor<IPostsInteractorListener>(), IPostsInteractor {
 
-    override fun requestPosts(requestConfig: RequestConfig?) {
+    override fun requestPosts(requestConfig: RequestConfig) {
         executeWithDelay({
             interactorListener.onRequestPostsSuccess(getPostsResponseData())
         }, requestConfig = requestConfig)

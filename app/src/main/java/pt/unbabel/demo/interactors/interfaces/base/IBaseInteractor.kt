@@ -8,10 +8,8 @@ import pt.unbabel.demo.interactors.listeners.base.IInteractorListener
 
 interface IBaseInteractor<IL : IInteractorListener>{
 
-    var requestContextGroup: String?
+    var requestContext: String
     var interactorListener: IL
-
-    fun getRequestContext() = toString()
 
     fun cancelAllRunningRequests()
     fun retryFailedRequests()

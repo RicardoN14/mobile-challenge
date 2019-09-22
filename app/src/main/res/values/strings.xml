@@ -10,4 +10,8 @@
     <string name="error_parse_message">Error Getting Data From Server</string>
     <string name="error_server_message">Server Error (%1$d)</string>
 
+    <string name="post_details_author_label">Author</string>
+    <string name="post_details_description_label">Description</string>
+    <string name="post_details_number_of_comments_label">Number Of Comments</string>
+
 </resources>
