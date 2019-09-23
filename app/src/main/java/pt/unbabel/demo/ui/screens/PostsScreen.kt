@@ -7,6 +7,7 @@ import pt.unbabel.demo.R
 import pt.unbabel.demo.adapters.PostsAdapter
 import pt.unbabel.demo.alias.PresentersArrayList
 import pt.unbabel.demo.entities.requests.RequestConfig
+import pt.unbabel.demo.entities.requests.RequestError
 import pt.unbabel.demo.extensions.setLinearAdapter
 import pt.unbabel.demo.http.entities.PostResponseData
 import pt.unbabel.demo.presenters.implementations.posts.PostsPresenter
@@ -35,6 +36,8 @@ class PostsScreen : ExecuteRequestScreen(), IPostsPresenterListener {
     override fun getExecuteRequestLayoutResourceId() = R.layout.screen_posts
 
     override fun doExecuteRequestInitializations(savedInstanceState: Bundle?) {
+        initPostAdapter()
+
         postsResponseData?.let {
             onRequestPostsSuccess(it)
         } ?: postsPresenter.requestPosts(
@@ -46,12 +49,13 @@ class PostsScreen : ExecuteRequestScreen(), IPostsPresenterListener {
     }
 
     override fun onRequestPostsSuccess(postsResponseData: ArrayList<PostResponseData>) {
+        errorStateManager.hide()
         this.postsResponseData = postsResponseData
-        initPostAdapter(postsResponseData)
+        postsAdapter?.updateItems(postsResponseData)
     }
 
-    private fun initPostAdapter(postsResponseData: java.util.ArrayList<PostResponseData>) {
-        postsAdapter = PostsAdapter(this, postsResponseData).apply {
+    private fun initPostAdapter() {
+        postsAdapter = PostsAdapter(this).apply {
             postsRecyclerView.setLinearAdapter(
                 this,
                 itemDecoration = DividerItemDecoration(
@@ -60,6 +64,14 @@ class PostsScreen : ExecuteRequestScreen(), IPostsPresenterListener {
                 )
             )
         }
+    }
+
+    override fun showError(requestConfig: RequestConfig, requestError: RequestError) {
+        if(requestConfig.requestId == REQUEST_POSTS_ID && postsResponseData != null){
+            // Don't show error when we have information to show
+            return
+        }
+        super.showError(requestConfig, requestError)
     }
 
 }

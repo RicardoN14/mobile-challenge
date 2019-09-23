@@ -1,6 +1,9 @@
 package pt.unbabel.demo.presenters.implementations.posts
 
+import pt.unbabel.demo.UnbabelApplication
 import pt.unbabel.demo.entities.requests.RequestConfig
+import pt.unbabel.demo.extensions.toPostsDbEntity
+import pt.unbabel.demo.extensions.toPostsResponseData
 import pt.unbabel.demo.http.entities.PostResponseData
 import pt.unbabel.demo.injections.interactors.InteractorComponent
 import pt.unbabel.demo.interactors.interfaces.posts.IPostsInteractor
@@ -24,11 +27,21 @@ class PostsPresenter(
     override fun getInteractorListener() = this
 
     override fun requestPosts(requestConfig: RequestConfig) {
+        tryGetPostsFromDb()
         interactor.requestPosts(requestConfig)
     }
 
     override fun onRequestPostsSuccess(postsResponseData: ArrayList<PostResponseData>) {
         presenterListener.onRequestPostsSuccess(postsResponseData)
+        UnbabelApplication.instance.databaseManager.replacePosts(postsResponseData.toPostsDbEntity())
+    }
+
+    private fun tryGetPostsFromDb() {
+        UnbabelApplication.instance.databaseManager.getAllPosts {
+            if(it.isNotEmpty()) {
+                onRequestPostsSuccess(it.toPostsResponseData())
+            }
+        }
     }
 
 }

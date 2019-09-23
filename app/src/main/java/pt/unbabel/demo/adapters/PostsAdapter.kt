@@ -11,7 +11,7 @@ import pt.unbabel.demo.ui.screens.PostsScreen
 /**
  * Created by Ricardo Neves on 19/09/2019.
  */
-class PostsAdapter(screen: PostsScreen, items: ArrayList<PostResponseData>) :
+class PostsAdapter(screen: PostsScreen, items: ArrayList<PostResponseData> = arrayListOf()) :
     RecyclerViewBaseAdapter<PostResponseData, PostsScreen, PostsAdapter.PostsViewHolder>(
         screen,
         items

@@ -29,6 +29,9 @@ class PostDetailsScreen : ExecuteRequestScreen(),
         private const val REQUEST_USER_ID = "PostDetailsScreen::RequestUserId"
     }
 
+    private var commentsResponseData: ArrayList<CommentResponseData>? by instanceState()
+    private var userResponseData: UserResponseData? by instanceState()
+
     private lateinit var commentsPresenter: ICommentsPresenter
     private lateinit var usersPresenter: IUsersPresenter
 
@@ -49,27 +52,39 @@ class PostDetailsScreen : ExecuteRequestScreen(),
         postDetailsInformationCardView.setTitle(postResponseData.title)
         postDetailsDescriptionInformationView.setValue(postResponseData.description)
 
-        commentsPresenter.requestComments(
-            postResponseData.id, RequestConfig(
-                requestId = REQUEST_COMMENTS_ID
-            )
-        )
-
-        postResponseData.userId?.let {
-            usersPresenter.requestUser(
-                it, RequestConfig(
-                    requestId = REQUEST_USER_ID
+        commentsResponseData?.let {
+            onRequestCommentsSuccess(it)
+        } ?: run {
+            commentsPresenter.requestComments(
+                postResponseData.id, RequestConfig(
+                    requestId = REQUEST_COMMENTS_ID,
+                    showError = false
                 )
             )
+        }
+
+        userResponseData?.let {
+            onRequestUserSuccess(it)
+        } ?: run {
+            postResponseData.userId?.let {
+                usersPresenter.requestUser(
+                    it, RequestConfig(
+                        requestId = REQUEST_USER_ID,
+                        showError = false
+                    )
+                )
+            }
         }
 
     }
 
     override fun onRequestCommentsSuccess(commentsResponseData: ArrayList<CommentResponseData>) {
+        this.commentsResponseData = commentsResponseData
         postDetailsNumberOfCommentsInformationView.setValue(commentsResponseData.size.toString())
     }
 
     override fun onRequestUserSuccess(userResponseData: UserResponseData?) {
+        this.userResponseData = userResponseData
         postDetailsAuthorInformationView.setValue(userResponseData?.name)
     }
 

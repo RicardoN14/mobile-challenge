@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.SharedPreferences
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatDelegate
+import pt.unbabel.demo.databases.DataBaseManager
 
 /**
  * Created by Ricardo Neves on 16/09/2019.
@@ -19,6 +20,10 @@ class UnbabelApplication : Application() {
 
     var sharedPreferences: SharedPreferences? = null
         private set
+
+    val databaseManager by lazy {
+        DataBaseManager(this)
+    }
 
     override fun onCreate() {
         super.onCreate()

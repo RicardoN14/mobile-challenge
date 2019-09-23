@@ -66,6 +66,16 @@ def appendVersionNameVersionCode(appName, variant, defaultConfig) {
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.1"
+
+    signingConfigs {
+        release {
+            keyAlias 'key0'
+            keyPassword 'unbabeltest'
+            storeFile file('src/keystore/developer_ks.jks')
+            storePassword 'unbabeltest'
+        }
+    }
+
     defaultConfig {
         applicationId "pt.unbabel.demo"
         minSdkVersion 21
@@ -91,22 +101,26 @@ android {
         "mock" {
             dimension "version"
             applicationIdSuffix ".demo"
+            signingConfig signingConfigs.release
         }
 
         "dev" {
             dimension "version"
             applicationIdSuffix ".demo"
+            signingConfig signingConfigs.release
         }
 
         "qua"{
             dimension "version"
             applicationIdSuffix ".demo"
+            signingConfig signingConfigs.release
         }
 
         "prd"{
             dimension "version"
             versionName = appStoreVersion
             applicationIdSuffix ".full"
+            signingConfig signingConfigs.release
         }
     }
 
@@ -130,7 +144,7 @@ android {
 
 ext {
     supportLibraryVersion = '28.0.0'
-    archRoomVersion = "1.1.1"
+    archRoomVersion = "2.1.0"
     ankoVersion = "0.10.4"
 }
 
